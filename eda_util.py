@@ -3,11 +3,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class DataImport:
-    def get_train_test(path: str, index_col: int = None, target: str = None, random_state: int = 1048576, verbose: int = 1) -> tuple[pd.DataFrame]:
+    def get_train_test(path: str, index_col: int = None, target: str = None, test_size: float = 0.1, random_state: int = 1048576, verbose: int = 1) -> tuple[pd.DataFrame]:
         train_csv = pd.read_csv(path, index_col=index_col)
         X, y = feature_target.feature_target_split(train_csv, target=target)
         X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=0.1, random_state=random_state)
+            X, y, test_size=test_size, random_state=random_state)
         if verbose > 0:
             print(f'Shape of X_train is: {X_train.shape}; shape of y_train is: {y_train.shape}')
             print(f'Shape of X_test is: {X_test.shape}; shape of y_test is: {y_test.shape}')
